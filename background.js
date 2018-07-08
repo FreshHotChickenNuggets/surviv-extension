@@ -6,9 +6,15 @@ chrome.webRequest.onBeforeRequest.addListener((details) => {
 }, {
     "urls": ["*://surviv.io/js/app.*.js"]
 }, ["blocking"]);
-chrome.webRequest.onBeforeRequest.addListener(() => {
-    return {
-        "cancel": true
+chrome.webRequest.onBeforeRequest.addListener((details) => {
+    if (details.url.includes("container-05")) {
+        return {
+            "cancel": false
+        }
+    } else {
+        return {
+            "cancel": true
+        }
     }
 }, {
     "urls": ["*://surviv.io/img/map/*ceiling*.svg"]
