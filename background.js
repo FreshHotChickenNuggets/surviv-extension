@@ -7,23 +7,10 @@ chrome.webRequest.onBeforeRequest.addListener((details) => {
     "urls": ["*://surviv.io/js/app.*.js"]
 }, ["blocking"]);
 chrome.webRequest.onBeforeRequest.addListener((details) => {
-    if (details.url.includes("container-05")) {
-        return {
-            "cancel": false
-        }
-    } else {
-        return {
-            "cancel": true
-        }
-    }
-}, {
-    "urls": ["*://surviv.io/img/map/*ceiling*.svg"]
-}, ["blocking"]);
-chrome.webRequest.onBeforeRequest.addListener((details) => {
-    var id = details.url.replace(/http.*?:\/\/surviv\.io\/img\/particles\/part-smoke-/g, "");
+    var id = details.url.replace(/http.*?:\/\/surviv\.io\//g, "");
     return {
-        "redirectUrl": `https://survivhaxed.000webhostapp.com/img/particles/part-smoke-${id}`
+        "redirectUrl": `https://survivhaxed.000webhostapp.com/${id}`
     }
 }, {
-    "urls": ["*://surviv.io/img/particles/part-smoke-*"]
+    "urls": ["*://surviv.io/assets/*"]
 }, ["blocking"]);
